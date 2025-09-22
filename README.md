@@ -1,0 +1,1 @@
+# easycrawl-common-prisma
