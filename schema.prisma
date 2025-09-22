@@ -74,3 +74,13 @@ model Verification {
 
   @@map("verification")
 }
+
+model EcUserApiKey {
+  id        String   @id @default(uuid())
+  userId    String
+  apiKey    String   @unique
+  createdAt DateTime @default(now())
+  isExpired Boolean  @default(false)
+  expiredAt DateTime?
+  @@map("ec_user_api_key")
+}
