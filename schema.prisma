@@ -115,10 +115,10 @@ model EcInvoice {
 
 model EcPackage {
   id                    String   @id @default(uuid())
-  userId                String   @unique
-  invoiceId             String   @unique
+  userId                String
+  invoiceId             String
   // 商品信息
-  packageType           String   @unique
+  packageType           String
   name                  String
   // 状态信息
   isActive              Boolean  @default(false)
