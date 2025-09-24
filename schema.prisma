@@ -85,11 +85,42 @@ model EcUserApiKey {
   @@map("ec_user_api_key")
 }
 
+model EcInvoice {
+  id                String   @id @default(uuid())
+  userId            String
+  userEmail         String?
+  userName          String?
+  // 商品信息
+  packageType       String
+  packageName       String
+  packagePrice      String
+  packageQuantity   Int
+  // 总价
+  totalPrice        String
+  // 折扣信息
+  discountCode      String?
+  discountAmount    String?
+  // 支付信息
+  amount            String
+  isPaid            Boolean  @default(false)
+  paidAt            DateTime?
+  paymentMethod     String?
+  paymentDate       DateTime?
+  transactionId     String?
+  // 其他信息
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now()) @updatedAt
+  @@map("ec_invoice")
+}
+
 model EcPackage {
   id                    String   @id @default(uuid())
-  name                  String
-  packageType           String   @unique
   userId                String   @unique
+  invoiceId             String   @unique
+  // 商品信息
+  packageType           String   @unique
+  name                  String
+  // 状态信息
   isActive              Boolean  @default(false)
   credits               Int      @default(0)
   usedCredits           Int      @default(0)
