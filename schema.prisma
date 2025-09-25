@@ -148,6 +148,7 @@ model EcTaskRecord {
 model EcCreditTransaction {
   id          String   @id @default(uuid())
   userId      String
+  packageId   String?
   taskId      String
   action      String   // e.g., "add", "deduct"
   amount      Int
