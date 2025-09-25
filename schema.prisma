@@ -133,7 +133,7 @@ model EcPackage {
   @@map("ec_package")
 }
 
-model EcTask {
+model EcTaskRecord {
   id             String   @id @default(uuid())
   userId         String
   urls           String   // 存储为 JSON 字符串（数组）（冗余字段，方便查询）
@@ -142,7 +142,7 @@ model EcTask {
   updatedAt      DateTime @default(now()) @updatedAt
   completedAt    DateTime?
   isPublic       Boolean  @default(false)
-  @@map("ec_task")
+  @@map("ec_task_record")
 }
 
 model EcCreditTransaction {
