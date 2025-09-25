@@ -132,3 +132,26 @@ model EcPackage {
   expiredAt             DateTime?
   @@map("ec_package")
 }
+
+model EcTask {
+  id             String   @id @default(uuid())
+  userId         String
+  urls           String   // 存储为 JSON 字符串（数组）（冗余字段，方便查询）
+  status         String   // pending, in_progress, completed, failed
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+  completedAt    DateTime?
+  isPublic       Boolean  @default(false)
+  @@map("ec_task")
+}
+
+model EcCreditTransaction {
+  id          String   @id @default(uuid())
+  userId      String
+  taskId      String
+  action      String   // e.g., "add", "deduct"
+  amount      Int
+  description String?
+  createdAt   DateTime @default(now())
+  @@map("ec_credit_transaction")
+}
